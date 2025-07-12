@@ -1,0 +1,30 @@
+#main {
+  background-color: antiquewhite;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#about h2 {
+  text-align: center;
+  font-family: Verdana;
+}
+
+#about h4 {
+  margin-top: 40px;
+  margin-left: 20px;
+}
+
+#about ol {
+  margin-left: 20px;
+}
+
+footer {
+  background-color: black;
+  padding: 20px;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
