@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arham IT Solution | MERN Stack Development Program</title>
+    <style>
+        :root {
+            --primary-purple: #6a0dad;
+            --secondary-purple: #9b59b6;
+            --light-purple: #bb8fce;
+            --primary-blue: #3498db;
+            --secondary-blue: #5dade2;
+            --dark-blue: #2874a6;
+            --white: #ffffff;
+            --light-gray: #f5f5f5;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--light-gray);
+            color: #333;
+            line-height: 1.6;
+        }
+
+        header {
+            background: linear-gradient(135deg, var(--primary-purple), var(--dark-blue));
+            color: var(--white);
+            padding: 1rem 0;
+            text-align: center;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem 0;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: var(--white);
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-links li {
+            margin-left: 2rem;
+        }
+
+        .nav-links a {
+            color: var(--white);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--light-purple);
+        }
+
+        .hero {
+            text-align: center;
+            padding: 4rem 0;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(to right, var(--white), var(--secondary-blue));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto 2rem;
+            color: var(--white);
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: var(--primary-blue);
+            color: var(--white);
+            padding: 0.8rem 1.8rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            background-color: var(--secondary-purple);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .btn-purple {
+            background-color: var(--secondary-purple);
+        }
+
+        .btn-purple:hover {
+            background-color: var(--primary-purple);
+        }
+
+        section {
+            padding: 4rem 0;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+            color: var(--primary-purple);
+            font-size: 2.5rem;
+        }
+
+        .courses {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .course-card {
+            background-color: var(--white);
+            border-radius: 10px;
+            padding: 2rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+            border-top: 4px solid var(--primary-blue);
+        }
+
+        .course-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+            border-top-color: var(--primary-purple);
+        }
+
+        .course-card h3 {
+            color: var(--primary-purple);
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+
+        .course-card p {
+            color: #666;
+            margin-bottom: 1.5rem;
+        }
+
+        .tech-stack {
+            background: linear-gradient(135deg, var(--light-purple), var(--secondary-blue));
+            padding: 4rem 0;
+            color: var(--white);
+        }
+
+        .tech-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            text-align: center;
+        }
+
+        .tech-item {
+            background-color: rgba(255, 255, 255, 0.1);
+            padding: 2rem;
+            border-radius: 10px;
+            transition: all 0.3s ease;
+        }
+
+        .tech-item:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+            transform: scale(1.05);
+        }
+
+        .tech-item i {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            color: var(--white);
+        }
+
+        .tech-item h3 {
+            font-size: 1.3rem;
+        }
+
+        .syllabus {
+            background-color: var(--white);
+        }
+
+        .syllabus-content {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem;
+            background-color: var(--light-gray);
+            border-radius: 10px;
+        }
+
+        .syllabus-section {
+            margin-bottom: 2rem;
+        }
+
+        .syllabus-section h3 {
+            color: var(--primary-purple);
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+            border-bottom: 2px solid var(--light-purple);
+            padding-bottom: 0.5rem;
+        }
+
+        .syllabus-section ul {
+            list-style-type: none;
+        }
+
+        .syllabus-section li {
+            padding: 0.5rem 0;
+            position: relative;
+            padding-left: 1.5rem;
+        }
+
+        .syllabus-section li:before {
+            content: "▹";
+            position: absolute;
+            left: 0;
+            color: var(--primary-blue);
+        }
+
+        .why-choose-us {
+            background-color: var(--light-gray);
+        }
+
+        .reasons {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .reason-card {
+            background-color: var(--white);
+            border-radius: 10px;
+            padding: 2rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+            border-left: 4px solid var(--primary-purple);
+        }
+
+        .reason-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            border-left-color: var(--primary-blue);
+        }
+
+        .reason-card h3 {
+            color: var(--primary-purple);
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+            display: flex;
+            align-items: center;
+        }
+
+        .reason-card h3 i {
+            margin-right: 10px;
+            color: var(--primary-blue);
+        }
+
+        .reason-card p {
+            color: #666;
+        }
+
+        footer {
+            background: linear-gradient(135deg, var(--primary-purple), var(--dark-blue));
+            color: var(--white);
+            text-align: center;
+            padding: 2rem 0;
+            margin-top: 2rem;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+            margin: 1rem 0;
+        }
+
+        .footer-links li {
+            margin: 0 1rem;
+        }
+
+        .footer-links a {
+            color: var(--white);
+            text-decoration: none;
+        }
+
+        .footer-links a:hover {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+
+<body>
+    <header>
+        <nav>
+            <div class="logo"><a href="/index.html"><img src="/imgs/logo.png" alt="Arham It Solution" width="210px"></a>
+            </div>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#courses">Courses</a></li>
+                <li><a href="#syllabus">Syllabus</a></li>
+                <li><a href="#why-us">Why Choose Us</a></li>
+            </ul>
+        </nav>
+
+        <div class="hero" id="home">
+            <h1>MERN Stack Development Program</h1>
+            <p>Become a full-stack developer with our comprehensive program covering MongoDB, Express.js, React.js, and
+                Node.js</p>
+            <a href="#courses" class="btn btn-purple">Explore Program</a>
+        </div>
+    </header>
+
+    <section class="container" id="courses">
+        <h2 class="section-title">Our MERN Stack Program</h2>
+        <div class="courses">
+            <div class="course-card">
+                <h3>Frontend with React</h3>
+                <p>Master React.js fundamentals, hooks, context API, state management with Redux, and modern React
+                    patterns.</p>
+                <a href="#syllabus" class="btn">View Syllabus</a>
+            </div>
+
+            <div class="course-card">
+                <h3>Backend with Node & Express</h3>
+                <p>Learn to build robust backend services with Node.js, Express.js, RESTful APIs, and authentication.
+                </p>
+                <a href="#syllabus" class="btn">View Syllabus</a>
+            </div>
+
+            <div class="course-card">
+                <h3>Database with MongoDB</h3>
+                <p>Master MongoDB including schema design, CRUD operations, aggregation, and Mongoose ODM.</p>
+                <a href="#syllabus" class="btn">View Syllabus</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="tech-stack" id="tech">
+        <div class="container">
+            <h2 class="section-title">Technologies You'll Master</h2>
+            <div class="tech-grid">
+                <div class="tech-item">
+                    <i class="fab fa-react"></i>
+                    <h3>React.js</h3>
+                </div>
+
+                <div class="tech-item">
+                    <i class="fab fa-node-js"></i>
+                    <h3>Node.js</h3>
+                </div>
+
+                <div class="tech-item">
+                    <i class="fas fa-database"></i>
+                    <h3>MongoDB</h3>
+                </div>
+
+                <div class="tech-item">
+                    <i class="fab fa-js"></i>
+                    <h3>JavaScript ES6+</h3>
+                </div>
+
+                <div class="tech-item">
+                    <i class="fab fa-html5"></i>
+                    <h3>HTML5 & CSS3</h3>
+                </div>
+
+                <div class="tech-item">
+                    <i class="fab fa-sass"></i>
+                    <h3>SASS</h3>
+                </div>
+
+                <div class="tech-item">
+                    <i class="fab fa-git-alt"></i>
+                    <h3>Git & GitHub</h3>
+                </div>
+
+                <div class="tech-item">
+                    <i class="fas fa-server"></i>
+                    <h3>RESTful APIs</h3>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="syllabus container" id="syllabus">
+        <h2 class="section-title">Comprehensive Syllabus</h2>
+        <div class="syllabus-content">
+            <div class="syllabus-section">
+                <h3>HTML5 & CSS3 Fundamentals</h3>
+                <ul>
+                    <li>Modern HTML5 Semantic Elements</li>
+                    <li>CSS Flexbox and Grid Layouts</li>
+                    <li>Responsive Web Design Principles</li>
+                    <li>CSS Animations and Transitions</li>
+                    <li>SASS/SCSS Preprocessors</li>
+                    <li>Bootstrap Framework</li>
+                </ul>
+            </div>
+
+            <div class="syllabus-section">
+                <h3>JavaScript & ES6+</h3>
+                <ul>
+                    <li>JavaScript Fundamentals</li>
+                    <li>ES6+ Features (Arrow functions, Destructuring, etc.)</li>
+                    <li>Asynchronous JavaScript (Promises, Async/Await)</li>
+                    <li>DOM Manipulation</li>
+                    <li>Functional Programming Concepts</li>
+                    <li>Error Handling and Debugging</li>
+                </ul>
+            </div>
+
+            <div class="syllabus-section">
+                <h3>React.js Development</h3>
+                <ul>
+                    <li>React Fundamentals and JSX</li>
+                    <li>Components, Props, and State</li>
+                    <li>React Hooks (useState, useEffect, etc.)</li>
+                    <li>Context API for State Management</li>
+                    <li>React Router for Navigation</li>
+                    <li>Redux for Global State Management</li>
+                </ul>
+            </div>
+
+            <div class="syllabus-section">
+                <h3>Node.js & Express.js</h3>
+                <ul>
+                    <li>Node.js Fundamentals</li>
+                    <li>Express.js Framework</li>
+                    <li>Building RESTful APIs</li>
+                    <li>Middleware Concepts</li>
+                    <li>Authentication (JWT, OAuth)</li>
+                    <li>Error Handling and Validation</li>
+                </ul>
+            </div>
+
+            <div class="syllabus-section">
+                <h3>MongoDB & Database Design</h3>
+                <ul>
+                    <li>NoSQL Database Concepts</li>
+                    <li>MongoDB CRUD Operations</li>
+                    <li>Schema Design and Data Modeling</li>
+                    <li>Mongoose ODM</li>
+                    <li>Aggregation Framework</li>
+                    <li>Indexing and Performance Optimization</li>
+                </ul>
+            </div>
+
+            <div class="syllabus-section">
+                <h3>Advanced Topics</h3>
+                <ul>
+                    <li>Authentication & Authorization</li>
+                    <li>Deployment Strategies</li>
+                    <li>Testing (Jest, React Testing Library)</li>
+                    <li>WebSockets & Real-time Features</li>
+                    <li>Performance Optimization</li>
+                    <li>Security Best Practices</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section class="why-choose-us container" id="why-us">
+        <h2 class="section-title">Why Choose Our MERN Stack Program</h2>
+        <div class="reasons">
+            <div class="reason-card">
+                <h3><i class="fas fa-laptop-code"></i> Full Stack Mastery</h3>
+                <p>Learn both frontend and backend development to become a complete full-stack developer.</p>
+            </div>
+
+            <div class="reason-card">
+                <h3><i class="fas fa-project-diagram"></i> Real-world Projects</h3>
+                <p>Build portfolio-worthy projects including e-commerce sites, social networks, and more.</p>
+            </div>
+
+            <div class="reason-card">
+                <h3><i class="fas fa-code"></i> Modern JavaScript</h3>
+                <p>Master ES6+ features and modern JavaScript patterns used in professional development.</p>
+            </div>
+
+            <div class="reason-card">
+                <h3><i class="fas fa-users"></i> Industry Experts</h3>
+                <p>Learn from experienced MERN stack developers working in top tech companies.</p>
+            </div>
+
+            <div class="reason-card">
+                <h3><i class="fas fa-mobile-alt"></i> Responsive Design</h3>
+                <p>Create applications that work perfectly on all devices from desktop to mobile.</p>
+            </div>
+
+            <div class="reason-card">
+                <h3><i class="fas fa-briefcase"></i> Career Support</h3>
+                <p>Get job-ready with resume prep, interview coaching, and portfolio reviews.</p>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <h3>Arham IT Solution - MERN Stack Development Program</h3>
+            <ul class="footer-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#courses">Courses</a></li>
+                <li><a href="#syllabus">Syllabus</a></li>
+                <li><a href="#why-us">Why Choose Us</a></li>
+            </ul>
+            <p>&copy; 2025 Arham IT Solution. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+
+</html>

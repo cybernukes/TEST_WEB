@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Blockchain Development Course</title>
+  <style>
+      body {
+      font-family: 'Segoe UI', sans-serif;
+      margin: 0;
+      padding: 0;
+       background: linear-gradient(to right, #6f42c1, #3b5998);
+      color: white;
+    }
+
+    header {
+      background-color: rgba(0, 0, 0, 0.5);
+      text-align: center;
+      padding: 40px 20px;
+    }
+
+    .container {
+      max-width: 1000px;
+      margin: 40px auto;
+      background: white;
+      color: #333;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+    }
+
+    h1, h2 {
+      color: #6f42c1;
+    }
+
+    p, li {
+      font-size: 16px;
+      line-height: 1.6;
+    }
+
+    ul {
+      padding-left: 20px;
+    }
+
+    .highlight {
+      background: #f8f8ff;
+      padding: 12px 15px;
+      border-left: 4px solid #6f42c1;
+      margin: 20px 0;
+      border-radius: 6px;
+    }
+
+    .step {
+      font-weight: bold;
+      margin: 10px 0;
+    }
+
+    button,
+    .btn {
+      margin-top: 20px;
+      background: linear-gradient(to right, #6f42c1, #4fd1c5);
+      color: white;
+      padding: 12px 25px;
+      border: none;
+      border-radius: 30px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    button:hover,
+    .btn:hover {
+      background: white;
+      color: #6f42c1;
+      border: 2px solid #6f42c1;
+    }
+
+    img.icon {
+      vertical-align: middle;
+      width: 24px;
+      height: 24px;
+      margin-right: 5px;
+    }
+
+
+#msg,
+    #enrollMsg {
+      display: none;
+      color: green;
+      font-weight: bold;
+      margin-top: 20px;
+      text-align: center;
+    }
+
+    .form-section {
+      margin-top: 30px;
+    }
+
+    .form-group {
+      margin-bottom: 15px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 5px;
+      font-weight: bold;
+    }
+
+    input,
+    select,
+    textarea {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      font-size: 15px;
+    }
+
+    input:focus,
+    select:focus,
+    textarea:focus {
+      border-color: #6f42c1;
+      outline: none;
+    }
+
+    .invalid-feedback {
+      color: red;
+      display: none;
+      font-size: 13px;
+      margin-top: 5px;
+    }
+
+    @media (max-width: 600px) {
+      .container {
+        margin: 15px;
+        padding: 20px;
+      }
+    }
+
+  </style>
+</head>
+
+
+  <header>
+    <h1>Blockchain Development Course</h1>
+    <p>🚀 Build Decentralized Apps (dApps) & Understand Smart Contracts</p>
+  </header>
+
+<body>
+
+  <div class="container">
+    <h2>What is Blockchain Development?</h2>
+    <p>
+      <strong>Blockchain</strong> is a decentralized digital ledger technology powering cryptocurrencies, smart contracts, NFTs, and decentralized applications (dApps). This course dives deep into how blockchain works, how to program with <strong>Solidity</strong>, and how to build dApps using <strong>Ethereum</strong> and related tools.
+    </p>
+
+    <div class="highlight">
+      Learn to build smart contracts, create dApps, integrate Web3 wallets, and deploy your own tokens or NFTs on platforms like Ethereum & Polygon.
+    </div>
+
+    <h2>Why Take This Course?</h2>
+    <ul>
+      <li>🔐 <strong>Understand Decentralization:</strong> Learn how blockchain enables secure, transparent, peer-to-peer applications.</li>
+      <li>🧠 <strong>Master Smart Contracts:</strong> Write secure and efficient contracts in Solidity.</li>
+      <li>🛠️ <strong>Hands-on Development:</strong> Build NFT platforms, DeFi tools, or DAO frameworks.</li>
+      <li>🌐 <strong>Integrate with Web3:</strong> Use MetaMask, Web3.js, and Ethers.js for full-stack dApp development.</li>
+      <li>🧱 <strong>Project Deployment:</strong> Use Hardhat, Remix, and IPFS to launch real blockchain projects.</li>
+    </ul>
+
+    <h2>Why Choose Blockchain as a Career?</h2>
+    <ul>
+      <li>📈 <strong>High Growth:</strong> Web3 is one of the fastest-growing sectors in tech.</li>
+      <li>💰 <strong>Top Salaries:</strong> Blockchain developers are among the highest-paid engineers.</li>
+      <li>🌍 <strong>Remote Flexibility:</strong> Join global decentralized teams or start your own blockchain project.</li>
+      <li>🧩 <strong>Innovation-Driven:</strong> Be at the forefront of DeFi, NFTs, GameFi, and more.</li>
+    </ul>
+
+   <h2>What You'll Learn</h2>
+    <ul>
+      <li>📖 Blockchain Fundamentals & Cryptocurrency Concepts</li>
+      <li>📦 Ethereum, Smart Contracts & dApp Architecture</li>
+      <li>🧾 Solidity Programming Language</li>
+      <li>🧪 Deploying Smart Contracts with Remix & Hardhat</li>
+      <li>🪙 Token Standards (ERC-20, ERC-721)</li>
+      <li>🦊 Web3.js & Wallet Integration (MetaMask)</li>
+      <li>🔗 Real Projects: NFT Marketplace, Token Launch, Voting App</li>
+    </ul>
+
+    <h2>Tools & Technologies</h2>
+    <p>
+      <img class="icon" src="https://img.icons8.com/color/48/000000/solidity.png" alt="Solidity">
+      <img class="icon" src="https://img.icons8.com/color/48/000000/ethereum.png" alt="Ethereum">
+      <img class="icon" src="https://cdn.iconscout.com/icon/free/png-256/metamask-2728406-2261817.png" alt="MetaMask">
+      <img class="icon" src="https://seeklogo.com/images/H/hardhat-logo-888739EBB4-seeklogo.com.png" alt="Hardhat">
+      <img class="icon" src="https://cdn.iconscout.com/icon/free/png-256/ipfs-2752181-2285000.png" alt="IPFS">
+    </p>
+    <p>
+      Tools: Solidity, JavaScript, Ethereum, Polygon, Remix IDE, Hardhat, Ganache, MetaMask, Web3.js, Ethers.js, IPFS
+    </p>
+
+    <h2>Career Opportunities</h2>
+    <ul>
+      <li>👨‍💻 Blockchain Developer</li>
+      <li>🔐 Smart Contract Engineer</li>
+      <li>🌐 Web3 Developer</li>
+      <li>🎨 NFT/DeFi Project Contributor</li>
+    </ul>
+
+    <h2>How to Enroll</h2>
+    <div class="step">1. Fill the Registration Form</div>
+    <div class="step">2. Complete Payment</div>
+    <div class="step">3. Access Course via Email</div>
+
+    <form class="form-section needs-validation" novalidate onsubmit="submitForm(event)">
+      <h2>Enrollment Form</h2>
+
+      <div class="form-group">
+        <label for="fullName">Full Name</label>
+        <input type="text" id="fullName" required>
+        <div class="invalid-feedback">Full name is required.</div>
+      </div>
+
+      <div class="form-group">
+        <label for="phone">Phone Number</label>
+        <input type="tel" id="phone" pattern="[0-9]{10}" required>
+        <div class="invalid-feedback">Enter a valid 10-digit phone number.</div>
+      </div>
+
+      <div class="form-group">
+        <label for="email">Email Address</label>
+        <input type="email" id="email" required>
+        <div class="invalid-feedback">Enter a valid email address.</div>
+      </div>
+
+     <div class="form-group">
+  <label for="city">City</label>
+  <input list="cities" id="city" name="city" required placeholder="Select or type your city">
+  <datalist id="cities">
+    <option value="Pune">
+    <option value="Mumbai">
+    <option value="Ahmednagar">
+    <option value="Nashik">
+    <option value="Nagpur">
+    <option value="Thane">
+    <option value="Aurangabad">
+    <option value="Solapur">
+    <option value="Kolhapur">
+    <option value="Sangli">
+    <option value="Satara">
+    <option value="Latur">
+    <option value="Jalgaon">
+    <option value="Nanded">
+    <option value="Amravati">
+    <option value="Akola">
+    <option value="Beed">
+    <option value="Parbhani">
+    <option value="Osmanabad">
+    <option value="Wardha">
+    <option value="Ratnagiri">
+    <option value="Vasai">
+    <option value="Panvel">
+    <option value="Karad">
+  </datalist>
+  <div class="invalid-feedback">Please enter your city.</div>
+</div>
+
+
+      <div class="form-group">
+        <label for="address">Address</label>
+        <textarea id="address" rows="3" required></textarea>
+        <div class="invalid-feedback">Address cannot be empty.</div>
+      </div>
+
+      <div style="text-align: center;">
+        <button type="submit" class="btn">Enroll Now</button>
+      </div>
+    </form>
+
+    <div id="enrollMsg">✅ Thank you for enrolling! We'll contact you soon.</div>
+  </div>
+
+  <script>
+    function submitForm(event) {
+      event.preventDefault();
+      const form = event.target;
+      const inputs = form.querySelectorAll("input, select, textarea");
+      let valid = true;
+
+      inputs.forEach(input => {
+        if (!input.checkValidity()) {
+          input.nextElementSibling.style.display = "block";
+          valid = false;
+        } else {
+          input.nextElementSibling.style.display = "none";
+        }
+      });
+
+      if (valid) {
+        document.getElementById("enrollMsg").style.display = "block";
+        form.reset();
+      }
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Development Courses</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(to right, #6f42c1, #3b5998);
+      color: white;
+    }
+
+    header {
+      background: rgba(0, 0, 0, 0.7);
+      color: white;
+      text-align: center;
+      padding: 30px 20px;
+    }
+
+    header img {
+      width: 60px;
+      vertical-align: middle;
+      margin-right: 10px;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 30px auto;
+      background: rgba(255, 255, 255, 0.95);
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+      color: #333;
+    }
+
+    h2 img.icon {
+      width: 24px;
+      vertical-align: middle;
+      margin-right: 8px;
+    }
+
+    ul {
+      padding-left: 20px;
+    }
+
+    li {
+      margin-bottom: 15px;
+      font-weight: bold;
+    }
+
+    li p {
+      margin: 5px 0 0 10px;
+      font-weight: normal;
+      font-size: 14px;
+    }
+
+    .step {
+      margin: 10px 0;
+      font-weight: bold;
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 6px;
+      font-weight: bold;
+    }
+
+    input, select, textarea {
+      width: 100%;
+      padding: 10px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+      font-size: 16px;
+    }
+
+    input:focus, select:focus, textarea:focus {
+      border-color: #6f42c1;
+      outline: none;
+      box-shadow: 0 0 5px rgba(111, 66, 193, 0.5);
+    }
+
+    .btn {
+      background: linear-gradient(to right, #6f42c1, #007bff);
+      color: white;
+      border: none;
+      padding: 12px 25px;
+      border-radius: 30px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .btn:hover {
+      background: #fff;
+      color: #6f42c1;
+      border: 2px solid #6f42c1;
+    }
+
+    .invalid-feedback {
+      color: red;
+      font-size: 14px;
+      display: none;
+      margin-top: 5px;
+    }
+
+    .was-validated :invalid ~ .invalid-feedback {
+      display: block;
+    }
+
+    #enrollMsg {
+      text-align: center;
+      font-size: 18px;
+      margin-top: 20px;
+      color: green;
+      display: none;
+    }
+
+    @media (max-width: 600px) {
+      .container {
+        margin: 15px;
+        padding: 20px;
+      }
+    }
+
+    .section-box {
+      background: #f9f9f9;
+      padding: 20px;
+      border-radius: 10px;
+      margin-top: 30px;
+      color: #333;
+    }
+
+    .section-box h2 {
+      color: #6f42c1;
+    }
+
+    .section-box ul {
+      list-style-type: none;
+      padding: 0;
+    }
+
+    .section-box li {
+      margin-bottom: 10px;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <img src="https://img.icons8.com/fluency/48/code.png" alt="Code Icon">
+    <h1>Web, Android & iOS Development Courses</h1>
+    <p>Build Real Applications from Scratch with Certified Projects</p>
+  </header>
+
+  <div class="container">
+    <h2><img src="https://img.icons8.com/color/48/html-5--v1.png" alt="HTML" class="icon"> Web Development</h2>
+    <ul>
+      <li>HTML, CSS, JavaScript
+        <p>Learn the foundational building blocks of modern web development.</p>
+      </li>
+      <li>Responsive Design
+        <p>Build websites that look great on any device, from mobile to desktop.</p>
+      </li>
+      <li><img src="https://img.icons8.com/ultraviolet/40/react.png" width="20"> React or Angular Basics
+        <p>Get started with popular front-end frameworks for scalable interfaces.</p>
+      </li>
+      <li>Backend with Node.js or PHP
+        <p>Create dynamic web apps with a solid backend using APIs and databases.</p>
+      </li>
+      <li>Project + Certification
+        <p>Complete a real-world project and receive a course completion certificate.</p>
+      </li>
+    </ul>
+
+    <h2><img src="https://img.icons8.com/color/48/android-os.png" class="icon" alt="Android"> Android Development</h2>
+    <ul>
+      <li>Java & Kotlin Basics
+        <p>Understand the syntax and structure of Java and Kotlin for Android apps.</p>
+      </li>
+      <li>Android Studio Usage
+        <p>Work with the official IDE to design, develop and debug your apps.</p>
+      </li>
+      <li>UI/UX Design for Android
+        <p>Learn principles for creating clean and user-friendly Android interfaces.</p>
+      </li>
+      <li>Firebase Integration
+        <p>Use Firebase for real-time database, authentication, and cloud messaging.</p>
+      </li>
+      <li>Live Project + Certification
+        <p>Develop and deploy a functional app with certification included.</p>
+      </li>
+    </ul>
+
+    <h2><img src="https://img.icons8.com/ios-filled/50/mac-os.png" class="icon" alt="iOS"> iOS Development</h2>
+    <ul>
+      <li>Swift Programming Basics
+        <p>Learn Apple's powerful programming language from the ground up.</p>
+      </li>
+      <li>Xcode and Interface Builder
+        <p>Use the official IDE for UI design and app functionality.</p>
+      </li>
+      <li>Design Principles for iOS
+        <p>Master Apple’s design guidelines for building intuitive apps.</p>
+      </li>
+      <li>Core Data & CloudKit
+        <p>Store and sync user data using local storage and iCloud.</p>
+      </li>
+      <li>Capstone Project + Certification
+        <p>Finish with a showcase-worthy project and get certified.</p>
+      </li>
+    </ul>
+
+    <div class="section-box">
+      <h2>🎯 Why Take This Course?</h2>
+      <ul>
+        <li>🛠 <strong>Skill-Oriented Learning</strong> – Gain hands-on experience through real-time projects.</li>
+        <li>🧠 <strong>Industry-Relevant Curriculum</strong> – Learn tools and tech used by modern developers.</li>
+        <li>📜 <strong>Certifications & Recognition</strong> – Stand out with verified project certificates.</li>
+        <li>🧑‍🏫 <strong>Expert Mentorship</strong> – Get guided by seasoned professionals.</li>
+        <li>💼 <strong>Portfolio & Placement Support</strong> – Build your resume with practical projects.</li>
+      </ul>
+    </div>
+
+    <div class="section-box">
+      <h2>💼 Why Choose Development as a Career?</h2>
+      <ul>
+        <li>🌐 <strong>High Demand in Every Industry</strong> – Be in demand across IT, finance, health, and more.</li>
+        <li>💰 <strong>Lucrative Salaries & Freelancing</strong> – Earn well with full-time or freelance gigs.</li>
+        <li>🚀 <strong>Creative & Logical Satisfaction</strong> – Build ideas into reality with code.</li>
+        <li>📈 <strong>Rapid Career Growth</strong> – Clear growth path to senior roles or leadership.</li>
+        <li>🌍 <strong>Global Job Opportunities</strong> – Work from anywhere in the world.</li>
+      </ul>
+    </div>
+
+    <h2>📝 How to Enroll</h2>
+    <div class="step">1. Fill the Registration Form</div>
+    <div class="step">2. Complete Payment</div>
+    <div class="step">3. Access Course via Email</div>
+
+    <form class="form-section needs-validation" novalidate>
+      <h2>📋 Enrollment Form</h2>
+      <div class="form-group">
+        <label for="fullName">Full Name</label>
+        <input type="text" id="fullName" required>
+        <div class="invalid-feedback">Full name is required.</div>
+      </div>
+
+      <div class="form-group">
+        <label for="phone">Phone Number</label>
+        <input type="tel" id="phone" pattern="[0-9]{10}" required>
+        <div class="invalid-feedback">Enter a valid 10-digit phone number.</div>
+      </div>
+
+      <div class="form-group">
+        <label for="email">Email Address</label>
+        <input type="email" id="email" required>
+        <div class="invalid-feedback">Enter a valid email address.</div>
+      </div>
+
+     <div class="form-group">
+  <label for="city">City</label>
+  <input list="cities" id="city" name="city" required placeholder="Select or type your city">
+  <datalist id="cities">
+    <option value="Pune">
+    <option value="Mumbai">
+    <option value="Ahmednagar">
+    <option value="Nashik">
+    <option value="Nagpur">
+    <option value="Thane">
+    <option value="Aurangabad">
+    <option value="Solapur">
+    <option value="Kolhapur">
+    <option value="Sangli">
+    <option value="Satara">
+    <option value="Latur">
+    <option value="Jalgaon">
+    <option value="Nanded">
+    <option value="Amravati">
+    <option value="Akola">
+    <option value="Beed">
+    <option value="Parbhani">
+    <option value="Osmanabad">
+    <option value="Wardha">
+    <option value="Ratnagiri">
+    <option value="Vasai">
+    <option value="Panvel">
+    <option value="Karad">
+  </datalist>
+  <div class="invalid-feedback">Please enter your city.</div>
+</div>
+
+
+      <div class="form-group">
+        <label for="address">Address</label>
+        <textarea id="address" rows="3" required></textarea>
+        <div class="invalid-feedback">Address cannot be empty.</div>
+      </div>
+
+      <div style="text-align: center;">
+        <button type="submit" class="btn">Enroll Now</button>
+      </div>
+    </form>
+
+    <div id="enrollMsg">✅ Thank you for enrolling! We'll contact you soon.</div>
+  </div>
+
+  <script>
+    (function () {
+      'use strict';
+      const form = document.querySelector('.needs-validation');
+      form.addEventListener('submit', function (event) {
+        event.preventDefault();
+        if (!form.checkValidity()) {
+          event.stopPropagation();
+        } else {
+          document.getElementById("enrollMsg").style.display = "block";
+          form.reset();
+        }
+        form.classList.add('was-validated');
+      }, false);
+    })();
+  </script>
+
+</body>
+</html>

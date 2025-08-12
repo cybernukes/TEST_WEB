@@ -1,0 +1,776 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Arham IT Solution - Admin Panel</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <style>
+    :root {
+      --primary: #6b46c1;
+      --secondary: #3b82f6;
+      --accent: #00c6ff;
+      --light: #f8f9fa;
+      --dark: #212529;
+    }
+
+    body {
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f5f7fb;
+      color: #333;
+    }
+
+    .sidebar {
+      height: 100vh;
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      color: white;
+      position: fixed;
+      padding-top: 20px;
+    }
+
+    .main-content {
+      margin-left: 250px;
+      padding: 20px;
+    }
+
+    .logo {
+      padding: 20px;
+      text-align: center;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      margin-bottom: 20px;
+    }
+
+    .nav-link {
+      color: rgba(255, 255, 255, 0.8);
+      padding: 12px 20px;
+      margin: 5px 15px;
+      border-radius: 8px;
+      transition: all 0.3s;
+    }
+
+    .nav-link:hover,
+    .nav-link.active {
+      background: rgba(255, 255, 255, 0.1);
+      color: white;
+    }
+
+    .nav-link i {
+      margin-right: 10px;
+      width: 20px;
+      text-align: center;
+    }
+
+    .card {
+      border-radius: 12px;
+      border: none;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+      margin-bottom: 25px;
+      transition: transform 0.3s;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+    }
+
+    .card-header {
+      background: white;
+      border-bottom: 1px solid #eee;
+      font-weight: 600;
+      padding: 15px 20px;
+      border-radius: 12px 12px 0 0 !important;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      border: none;
+      padding: 10px 20px;
+      border-radius: 8px;
+    }
+
+    .btn-primary:hover {
+      opacity: 0.9;
+      transform: translateY(-2px);
+    }
+
+    .form-control,
+    .form-select {
+      border-radius: 8px;
+      padding: 10px 15px;
+      border: 1px solid #ddd;
+    }
+
+    .stats-card {
+      background: white;
+      border-radius: 12px;
+      padding: 20px;
+      text-align: center;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+    }
+
+    .stats-number {
+      font-size: 2.5rem;
+      font-weight: 700;
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin: 10px 0;
+    }
+
+    .admin-table {
+      width: 100%;
+      border-collapse: separate;
+      border-spacing: 0;
+    }
+
+    .admin-table th {
+      background-color: #f8f9fa;
+      padding: 12px 15px;
+      text-align: left;
+      font-weight: 600;
+    }
+
+    .admin-table td {
+      padding: 12px 15px;
+      border-bottom: 1px solid #eee;
+    }
+
+    .admin-table tr:last-child td {
+      border-bottom: none;
+    }
+
+    .action-btn {
+      padding: 5px 10px;
+      border-radius: 5px;
+      margin-right: 5px;
+    }
+
+    .btn-edit {
+      background-color: #ffc107;
+      color: #212529;
+      border: none;
+    }
+
+    .btn-delete {
+      background-color: #dc3545;
+      color: white;
+      border: none;
+    }
+
+    .notification {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      padding: 15px 25px;
+      border-radius: 8px;
+      background: white;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+      transform: translateX(150%);
+      transition: transform 0.3s ease;
+      z-index: 1000;
+    }
+
+    .notification.show {
+      transform: translateX(0);
+    }
+
+    .notification.success {
+      border-left: 4px solid #28a745;
+    }
+
+    .notification.error {
+      border-left: 4px solid #dc3545;
+    }
+
+    /* Add to your existing CSS */
+    .unread-message {
+      background-color: rgba(59, 130, 246, 0.05);
+    }
+
+    .unread-message:hover {
+      background-color: rgba(59, 130, 246, 0.1);
+    }
+
+    .view-message {
+      background-color: #0dcaf0;
+      color: white;
+    }
+
+    #viewMessageModal .modal-body {
+      max-height: 70vh;
+      overflow-y: auto;
+    }
+
+    #message-content {
+      white-space: pre-wrap;
+    }
+
+    @media (max-width: 768px) {
+      .sidebar {
+        width: 100%;
+        height: auto;
+        position: relative;
+      }
+
+      .main-content {
+        margin-left: 0;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Notification System -->
+  <div class="notification">
+    <div class="d-flex align-items-center">
+      <i class="fas fa-check-circle me-2 text-success"></i>
+      <span class="message">Operation completed successfully!</span>
+    </div>
+  </div>
+
+  <div class="container-fluid">
+    <div class="row">
+      <!-- Sidebar -->
+      <div class="col-md-3 col-lg-2 d-md-block sidebar">
+        <div class="logo">
+          <h3><i class="fas fa-cogs"></i> Arham IT Admin</h3>
+        </div>
+
+        <ul class="nav flex-column">
+          <li class="nav-item">
+            <a class="nav-link active" href="#">
+              <i class="fas fa-tachometer-alt"></i> Dashboard
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#services-section">
+              <i class="fas fa-laptop-code"></i> Services
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#courses-section">
+              <i class="fas fa-book-open"></i> Courses
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#products-section">
+              <i class="fas fa-box"></i> Products
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#team-section">
+              <i class="fas fa-users"></i> Team
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#contacts-section">
+              <i class="fa-solid fa-message"></i> Contacts
+            </a>
+          </li>
+          <li class="nav-item mt-4">
+            <a class="nav-link" href="/index.html" target="_blank">
+              <i class="fas fa-external-link-alt"></i> View Website
+            </a>
+          </li>
+          <li class="nav-item mt-4">
+            <a class="nav-link" href="#" id="logout-btn">
+              <i class="fas fa-sign-out-alt"></i> Logout
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Main Content -->
+      <div class="col-md-9 ms-sm-auto col-lg-10 main-content">
+        <div
+          class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+          <h1 class="h2">Dashboard</h1>
+          <div class="btn-toolbar mb-2 mb-md-0">
+            <div class="btn-group me-2">
+              <button type="button" class="btn btn-sm btn-outline-secondary">
+                Export
+              </button>
+            </div>
+            <button type="button" class="btn btn-sm btn-outline-secondary dropdown-toggle">
+              <i class="fas fa-calendar-alt"></i> This week
+            </button>
+          </div>
+        </div>
+
+        <!-- Stats Cards -->
+        <div class="row">
+          <div class="col-md-3">
+            <div class="stats-card">
+              <i class="fas fa-laptop-code fa-2x text-primary mb-2"></i>
+              <h5>Services</h5>
+              <div class="stats-number" id="services-count">0</div>
+              <p class="text-muted">Active services</p>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="stats-card">
+              <i class="fas fa-book-open fa-2x text-info mb-2"></i>
+              <h5>Courses</h5>
+              <div class="stats-number" id="courses-count">0</div>
+              <p class="text-muted">Available courses</p>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="stats-card">
+              <i class="fas fa-box fa-2x text-warning mb-2"></i>
+              <h5>Products</h5>
+              <div class="stats-number" id="products-count">0</div>
+              <p class="text-muted">Active products</p>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="stats-card">
+              <i class="fas fa-users fa-2x text-success mb-2"></i>
+              <h5>Team</h5>
+              <div class="stats-number" id="team-count">0</div>
+              <p class="text-muted">Team members</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Services Section -->
+        <div class="card mt-5" id="services-section">
+          <div class="card-header d-flex justify-content-between align-items-center">
+            <h5 class="mb-0">Services Management</h5>
+            <button class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#addServiceModal">
+              <i class="fas fa-plus"></i> Add Service
+            </button>
+          </div>
+          <div class="card-body">
+            <div class="table-responsive">
+              <table class="admin-table">
+                <thead>
+                  <tr>
+                    <th>Title</th>
+                    <th>Image</th>
+                    <th>Features</th>
+                    <th>Link</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>DIGITAL MARKETING</td>
+                    <td>dgsr.png</td>
+                    <td>7 features</td>
+                    <td>dm.html</td>
+                    <td>
+                      <button class="btn btn-sm btn-edit action-btn">
+                        <i class="fas fa-edit"></i>
+                      </button>
+                      <button class="btn btn-sm btn-delete action-btn">
+                        <i class="fas fa-trash"></i>
+                      </button>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>IOT & EMBEDDED SYSTEM</td>
+                    <td>iotsr.png</td>
+                    <td>7 features</td>
+                    <td>iotsr.html</td>
+                    <td>
+                      <button class="btn btn-sm btn-edit action-btn">
+                        <i class="fas fa-edit"></i>
+                      </button>
+                      <button class="btn btn-sm btn-delete action-btn">
+                        <i class="fas fa-trash"></i>
+                      </button>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>WEB DEVELOPMENT</td>
+                    <td>websr.png</td>
+                    <td>8 features</td>
+                    <td>websr.html</td>
+                    <td>
+                      <button class="btn btn-sm btn-edit action-btn">
+                        <i class="fas fa-edit"></i>
+                      </button>
+                      <button class="btn btn-sm btn-delete action-btn">
+                        <i class="fas fa-trash"></i>
+                      </button>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <!-- Courses Section -->
+        <div class="card mt-4" id="courses-section">
+          <div class="card-header d-flex justify-content-between align-items-center">
+            <h5 class="mb-0">Courses Management</h5>
+            <button class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#addCourseModal">
+              <i class="fas fa-plus"></i> Add Course
+            </button>
+          </div>
+          <div class="card-body">
+            <div class="table-responsive">
+              <table class="admin-table">
+                <thead>
+                  <tr>
+                    <th>Title</th>
+                    <th>Image</th>
+                    <th>Description</th>
+                    <th>Link</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>CLOUD COMPUTING</td>
+                    <td>coc.png</td>
+                    <td>
+                      Enables on-demand access to computing resources...
+                    </td>
+                    <td>coc.html</td>
+                    <td>
+                      <button class="btn btn-sm btn-edit action-btn">
+                        <i class="fas fa-edit"></i>
+                      </button>
+                      <button class="btn btn-sm btn-delete action-btn">
+                        <i class="fas fa-trash"></i>
+                      </button>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>WEB, ANDROID, AND IOS DEVELOPMENT</td>
+                    <td>wd.png</td>
+                    <td>Software and connectivity drive development...</td>
+                    <td>wad.html</td>
+                    <td>
+                      <button class="btn btn-sm btn-edit action-btn">
+                        <i class="fas fa-edit"></i>
+                      </button>
+                      <button class="btn btn-sm btn-delete action-btn">
+                        <i class="fas fa-trash"></i>
+                      </button>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <!-- Products Section -->
+        <div class="card mt-4" id="products-section">
+          <div class="card-header d-flex justify-content-between align-items-center">
+            <h5 class="mb-0">Products Management</h5>
+            <button class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#addProductModal">
+              <i class="fas fa-plus"></i> Add Product
+            </button>
+          </div>
+          <div class="card-body">
+            <div class="table-responsive">
+              <table class="admin-table">
+                <thead>
+                  <tr>
+                    <th>Icon</th>
+                    <th>Title</th>
+                    <th>Description</th>
+                    <th>Features</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>👨‍⚕️</td>
+                    <td>OPD Care</td>
+                    <td>Patient Management System</td>
+                    <td>5 features</td>
+                    <td>
+                      <button class="btn btn-sm btn-edit action-btn">
+                        <i class="fas fa-edit"></i>
+                      </button>
+                      <button class="btn btn-sm btn-delete action-btn">
+                        <i class="fas fa-trash"></i>
+                      </button>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>📃</td>
+                    <td>Result Management System</td>
+                    <td>Advanced security solutions...</td>
+                    <td>4 features</td>
+                    <td>
+                      <button class="btn btn-sm btn-edit action-btn">
+                        <i class="fas fa-edit"></i>
+                      </button>
+                      <button class="btn btn-sm btn-delete action-btn">
+                        <i class="fas fa-trash"></i>
+                      </button>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <!-- Team Section -->
+        <div class="card mt-4" id="team-section">
+          <div class="card-header d-flex justify-content-between align-items-center">
+            <h5 class="mb-0">Team Management</h5>
+            <button class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#addTeamModal">
+              <i class="fas fa-plus"></i> Add Member
+            </button>
+          </div>
+          <div class="card-body">
+            <div class="table-responsive">
+              <table class="admin-table">
+                <thead>
+                  <tr>
+                    <th>Image</th>
+                    <th>Name</th>
+                    <th>Position</th>
+                    <th>Bio</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>
+                      <img src="/imgs/imarsir.jpg" width="40" height="40" class="rounded-circle" />
+                    </td>
+                    <td>Imran Shaikh</td>
+                    <td>Founder & CEO</td>
+                    <td>Visionary leader with 10+ years...</td>
+                    <td>
+                      <button class="btn btn-sm btn-edit action-btn">
+                        <i class="fas fa-edit"></i>
+                      </button>
+                      <button class="btn btn-sm btn-delete action-btn">
+                        <i class="fas fa-trash"></i>
+                      </button>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <img src="/imgs/umairimage.jpg" width="40" height="40" class="rounded-circle" />
+                    </td>
+                    <td>Umair Shaikh</td>
+                    <td>BDE / Graphic designer</td>
+                    <td>Versatile creative and strategic...</td>
+                    <td>
+                      <button class="btn btn-sm btn-edit action-btn">
+                        <i class="fas fa-edit"></i>
+                      </button>
+                      <button class="btn btn-sm btn-delete action-btn">
+                        <i class="fas fa-trash"></i>
+                      </button>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+        <!-- Contacts Section -->
+        <div class="card mt-4" id="contacts-section">
+          <div class="card-header d-flex justify-content-between align-items-center">
+            <h5 class="mb-0">Contact Messages</h5>
+            <div class="btn-group">
+              <button class="btn btn-sm btn-outline-secondary" id="mark-all-read">
+                <i class="fas fa-check-double"></i> Mark All Read
+              </button>
+              <button class="btn btn-sm btn-outline-danger" id="delete-all-read">
+                <i class="fas fa-trash"></i> Delete Read
+              </button>
+            </div>
+          </div>
+          <div class="card-body">
+            <div class="table-responsive">
+              <table class="admin-table">
+                <thead>
+                  <tr>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Phone</th>
+                    <th>Message</th>
+                    <th>Date</th>
+                    <th>Status</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody id="contacts-table-body">
+                  <!-- Messages will be loaded here -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modals -->
+  <div class="modal fade" id="addServiceModal" tabindex="-1">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Add New Service</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body">
+          <form id="serviceForm">
+            <div class="mb-3">
+              <label class="form-label">Title</label>
+              <input type="text" class="form-control" id="service-title" required />
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Image URL</label>
+              <input type="text" class="form-control" id="service-image" required />
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Features (comma separated)</label>
+              <textarea class="form-control" rows="3" id="service-features" required></textarea>
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Link</label>
+              <input type="text" class="form-control" id="service-link" required />
+            </div>
+
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+            Close
+          </button>
+          <button type="button" class="btn btn-primary">Save Service</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="addCourseModal" tabindex="-1">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Add New Course</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body">
+          <form id="courseForm">
+            <div class="mb-3">
+              <label class="form-label">Title</label>
+              <input type="text" class="form-control" id="course-title" required />
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Image URL</label>
+              <input type="text" class="form-control" id="course-image" required />
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Description</label>
+              <textarea class="form-control" rows="3" id="course-description" required></textarea>
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Link</label>
+              <input type="text" class="form-control" id="course-link" required />
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+            Close
+          </button>
+          <button type="button" class="btn btn-primary">Save Course</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="addProductModal" tabindex="-1">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Add New Product</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body">
+          <form id="productForm">
+            <div class="mb-3">
+              <label for="product-image" class="form-label">Image URL</label>
+              <input type="url" class="form-control" id="product-image" required>
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Title</label>
+              <input type="text" class="form-control" id="product-title" required />
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Description</label>
+              <textarea class="form-control" rows="3" id="product-description" required></textarea>
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Features (comma separated)</label>
+              <textarea class="form-control" rows="3" id="product-features" required></textarea>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+            Close
+          </button>
+          <button type="button" class="btn btn-primary">Save Product</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="addTeamModal" tabindex="-1">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="teamModalTitle">Add New Team Member</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body">
+          <form id="teamForm">
+            <input type="hidden" id="member-id">
+            <div class="mb-3">
+              <label class="form-label">Name</label>
+              <input type="text" class="form-control" id="member-name" required />
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Position</label>
+              <input type="text" class="form-control" id="member-position" required />
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Bio</label>
+              <textarea class="form-control" rows="3" id="member-bio" required></textarea>
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Image URL</label>
+              <input type="text" class="form-control" id="member-image" required />
+            </div>
+            <div class="mb-3">
+              <label class="form-label">LinkedIn URL</label>
+              <input type="url" class="form-control" id="member-linkedin" />
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+            Close
+          </button>
+          <button type="button" class="btn btn-primary" id="saveMemberBtn">Save Member</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+  <script type="module" src="/scripts/admin.js">
+
+  </script>
+</body>
+
+</html>

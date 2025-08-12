@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Job-Oriented Training Program</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+     background: linear-gradient(to right, #6f42c1, #3b5998);
+      background-attachment: fixed;
+      background-size: cover;
+      background-repeat: no-repeat;
+    }
+
+    header {
+      background-color: rgba(0, 0, 0, 0.6);
+      color: white;
+      text-align: center;
+      padding: 40px 20px;
+    }
+
+    .container {
+      max-width: 1000px;
+      margin: 40px auto;
+      background: white;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.15);
+    }
+
+    h2 {
+      color: #6f42c1;
+      margin-top: 30px;
+    }
+
+    p, li {
+      font-size: 16px;
+      line-height: 1.6;
+    }
+
+    ul {
+      padding-left: 20px;
+    }
+
+    .highlight {
+      background: #f2f0fc;
+      padding: 12px;
+      border-left: 4px solid #6f42c1;
+      margin: 20px 0;
+      border-radius: 6px;
+    }
+
+    .step {
+      font-weight: bold;
+      margin: 10px 0;
+    }
+
+    button,
+    .btn {
+      margin-top: 20px;
+      background: linear-gradient(to right, #6f42c1, #007bff);
+      color: white;
+      padding: 12px 25px;
+      border: none;
+      border-radius: 30px;
+      cursor: pointer;
+      font-size: 16px;
+      transition: 0.3s;
+    }
+
+    button:hover,
+    .btn:hover {
+      background: white;
+      color: #6f42c1;
+      border: 2px solid #6f42c1;
+    }
+
+    .form-section {
+      margin-top: 40px;
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 8px;
+      color: #333;
+      font-weight: bold;
+    }
+
+    input, select, textarea {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font-size: 15px;
+      transition: border 0.3s;
+    }
+
+    input:focus, select:focus, textarea:focus {
+      border-color: #6f42c1;
+      outline: none;
+    }
+
+    .invalid-feedback {
+      display: none;
+      color: red;
+      font-size: 14px;
+      margin-top: 5px;
+    }
+
+    #enrollMsg {
+      display: none;
+      color: green;
+      font-weight: bold;
+      margin-top: 30px;
+      text-align: center;
+      font-size: 18px;
+    }
+
+    .icon-title i {
+      margin-right: 8px;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Job-Oriented Training Program</h1>
+    <p>Get Industry-Ready with Real Skills & Hands-On Projects</p>
+  </header>
+
+  <div class="container">
+    <h2 class="icon-title"><i class="fas fa-book-open"></i> What is Job-Oriented Training?</h2>
+    <p>
+      Job-oriented training is a specialized program focused on practical, in-demand skills that prepare individuals for specific job roles. Unlike traditional education, it emphasizes hands-on experience, real-world projects, and direct industry relevance.
+    </p>
+
+    <h2 class="icon-title"><i class="fas fa-bullseye"></i> Why Take This Course?</h2>
+    <ul>
+      <li><i class="fas fa-check-circle"></i> Gain practical skills in programming, development, and tools companies actually use</li>
+      <li><i class="fas fa-check-circle"></i> Build real-world project portfolios to showcase to employers</li>
+      <li><i class="fas fa-check-circle"></i> Improve your confidence with mock interviews and career guidance</li>
+      <li><i class="fas fa-check-circle"></i> Access mentorship and personalized support throughout the course</li>
+    </ul>
+
+    <h2 class="icon-title"><i class="fas fa-briefcase"></i> Why Choose Job-Oriented Training as a Career?</h2>
+    <ul>
+      <li><i class="fas fa-rocket"></i> Faster path to employment with industry-ready skills</li>
+      <li><i class="fas fa-chart-line"></i> High demand in tech fields like web development, data, and IT support</li>
+      <li><i class="fas fa-lightbulb"></i> Continuous learning keeps you future-proof in a changing job market</li>
+      <li><i class="fas fa-handshake"></i> Networking with professionals and companies through our placement support</li>
+    </ul>
+
+    <h2><i class="fas fa-tools"></i> Tools & Platforms</h2>
+    <ul>
+      <li>VS Code, GitHub</li>
+      <li>MySQL, PostgreSQL, MongoDB</li>
+      <li>Jira, Slack, Zoom (Team Communication)</li>
+      <li>LeetCode, HackerRank (for coding practice)</li>
+    </ul>
+
+    <h2><i class="fas fa-user-graduate"></i> Career Preparation</h2>
+    <ul>
+      <li>Resume & LinkedIn Profile Building</li>
+      <li>Mock Interviews with Industry Experts</li>
+      <li>Live Project Portfolio for Job Showcases</li>
+      <li>Placement Assistance & Referrals</li>
+    </ul>
+
+    <h2><i class="fas fa-users"></i> Who Can Join?</h2>
+    <ul>
+      <li>College Students (Any Stream)</li>
+      <li>Fresh Graduates Looking for Jobs</li>
+      <li>Professionals Upskilling for Career Change</li>
+    </ul>
+
+    <h2><i class="fas fa-sign-in-alt"></i> How to Enroll</h2>
+    <div class="step">1. Fill the Registration Form</div>
+    <div class="step">2. Complete Payment</div>
+    <div class="step">3. Access Course via Email</div>
+
+    <form class="form-section needs-validation" novalidate onsubmit="submitForm(event)">
+      <h2>Enrollment Form</h2>
+      <div class="form-group">
+        <label for="fullName">Full Name</label>
+        <input type="text" id="fullName" required>
+        <div class="invalid-feedback">Full name is required.</div>
+      </div>
+
+      <div class="form-group">
+        <label for="phone">Phone Number</label>
+        <input type="tel" id="phone" pattern="[0-9]{10}" required>
+        <div class="invalid-feedback">Enter a valid 10-digit phone number.</div>
+      </div>
+
+      <div class="form-group">
+        <label for="email">Email Address</label>
+        <input type="email" id="email" required>
+        <div class="invalid-feedback">Enter a valid email address.</div>
+      </div>
+
+     <div class="form-group">
+  <label for="city">City</label>
+  <input list="cities" id="city" name="city" required placeholder="Select or type your city">
+  <datalist id="cities">
+    <option value="Pune">
+    <option value="Mumbai">
+    <option value="Ahmednagar">
+    <option value="Nashik">
+    <option value="Nagpur">
+    <option value="Thane">
+    <option value="Aurangabad">
+    <option value="Solapur">
+    <option value="Kolhapur">
+    <option value="Sangli">
+    <option value="Satara">
+    <option value="Latur">
+    <option value="Jalgaon">
+    <option value="Nanded">
+    <option value="Amravati">
+    <option value="Akola">
+    <option value="Beed">
+    <option value="Parbhani">
+    <option value="Osmanabad">
+    <option value="Wardha">
+    <option value="Ratnagiri">
+    <option value="Vasai">
+    <option value="Panvel">
+    <option value="Karad">
+  </datalist>
+  <div class="invalid-feedback">Please enter your city.</div>
+</div>
+
+
+      <div class="form-group">
+        <label for="address">Address</label>
+        <textarea id="address" rows="3" required></textarea>
+        <div class="invalid-feedback">Address cannot be empty.</div>
+      </div>
+
+      <div style="text-align: center;">
+        <button type="submit" class="btn">Enroll Now</button>
+      </div>
+    </form>
+
+    <div id="enrollMsg">✅ Thank you for enrolling! We'll contact you soon.</div>
+  </div>
+
+  <script>
+    function submitForm(e) {
+      e.preventDefault();
+      let valid = true;
+      const fields = ['fullName', 'phone', 'email', 'city', 'address'];
+      fields.forEach(id => {
+        const input = document.getElementById(id);
+        const feedback = input.nextElementSibling;
+        if (!input.checkValidity()) {
+          feedback.style.display = 'block';
+          input.style.borderColor = 'red';
+          valid = false;
+        } else {
+          feedback.style.display = 'none';
+          input.style.borderColor = '#ccc';
+        }
+      });
+
+      if (valid) {
+        document.querySelector('form').style.display = 'none';
+        document.getElementById("enrollMsg").style.display = "block";
+      }
+    }
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,886 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Arham IT Solutions - Professional Android Development</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: linear-gradient(135deg, #1a0b2e 0%, #3c2b5c 50%, #5a3d8a 100%);
+      color: #ffffff;
+      overflow-x: hidden;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    /* Navigation */
+    nav {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background: rgba(26, 11, 46, 0.95);
+      backdrop-filter: blur(20px);
+      z-index: 1000;
+      padding: 15px 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .nav-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-size: 24px;
+      font-weight: 700;
+      background: linear-gradient(135deg, #8B5CF6, #3B82F6);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .nav-menu {
+      display: flex;
+      list-style: none;
+      gap: 30px;
+    }
+
+    .nav-menu a {
+      color: #ffffff;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      position: relative;
+    }
+
+    .nav-menu a:hover {
+      color: #8B5CF6;
+    }
+
+    .nav-menu a::after {
+      content: '';
+      position: absolute;
+      bottom: -5px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: linear-gradient(90deg, #8B5CF6, #3B82F6);
+      transition: width 0.3s ease;
+    }
+
+    .nav-menu a:hover::after {
+      width: 100%;
+    }
+
+    /* Hero Section */
+    .hero {
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: radial-gradient(circle at 50% 50%, rgba(139, 92, 246, 0.2) 0%, transparent 50%);
+      animation: pulse 4s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+
+      0%,
+      100% {
+        opacity: 0.3;
+      }
+
+      50% {
+        opacity: 0.6;
+      }
+    }
+
+    .hero-content {
+      z-index: 2;
+      position: relative;
+    }
+
+    .hero h1 {
+      font-size: 4rem;
+      font-weight: 700;
+      margin-bottom: 20px;
+      background: linear-gradient(135deg, #ffffff, #8B5CF6);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      animation: slideInUp 1s ease-out;
+    }
+
+    .hero p {
+      font-size: 1.3rem;
+      margin-bottom: 30px;
+      opacity: 0.9;
+      animation: slideInUp 1s ease-out 0.2s both;
+    }
+
+    .cta-button {
+      display: inline-block;
+      padding: 15px 40px;
+      background: linear-gradient(135deg, #8B5CF6, #3B82F6);
+      color: white;
+      text-decoration: none;
+      border-radius: 50px;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      animation: slideInUp 1s ease-out 0.4s both;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .cta-button::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+      transition: left 0.5s;
+    }
+
+    .cta-button:hover::before {
+      left: 100%;
+    }
+
+    .cta-button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 30px rgba(139, 92, 246, 0.4);
+    }
+
+    @keyframes slideInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Services Section */
+    .services {
+      padding: 100px 0;
+      background: rgba(255, 255, 255, 0.02);
+    }
+
+    .section-title {
+      text-align: center;
+      font-size: 3rem;
+      margin-bottom: 60px;
+      background: linear-gradient(135deg, #ffffff, #8B5CF6);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      gap: 30px;
+    }
+
+    .service-card {
+      background: rgba(255, 255, 255, 0.05);
+      padding: 40px;
+      border-radius: 20px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      transition: all 0.3s ease;
+      backdrop-filter: blur(10px);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .service-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, #8B5CF6, #3B82F6);
+      transform: translateX(-100%);
+      transition: transform 0.3s ease;
+    }
+
+    .service-card:hover::before {
+      transform: translateX(0);
+    }
+
+    .service-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 20px 40px rgba(139, 92, 246, 0.15);
+      border-color: rgba(139, 92, 246, 0.3);
+    }
+
+    .service-icon {
+      font-size: 3rem;
+      margin-bottom: 20px;
+      background: linear-gradient(135deg, #8B5CF6, #3B82F6);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .service-card h3 {
+      font-size: 1.5rem;
+      margin-bottom: 15px;
+      color: #ffffff;
+    }
+
+    .service-card p {
+      opacity: 0.8;
+      line-height: 1.6;
+      margin-bottom: 15px;
+    }
+
+    .tech-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 15px;
+    }
+
+    .tech-tag {
+      background: rgba(139, 92, 246, 0.1);
+      color: #8B5CF6;
+      padding: 4px 12px;
+      border-radius: 15px;
+      font-size: 0.8rem;
+      border: 1px solid rgba(139, 92, 246, 0.2);
+    }
+
+    /* Portfolio Section */
+    .portfolio {
+      padding: 100px 0;
+    }
+
+    .portfolio-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 30px;
+      margin-top: 60px;
+    }
+
+    .portfolio-item {
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 15px;
+      overflow: hidden;
+      transition: all 0.3s ease;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .portfolio-item:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 15px 35px rgba(139, 92, 246, 0.1);
+    }
+
+    .portfolio-image {
+      height: 200px;
+      background: linear-gradient(135deg, #8B5CF6, #3B82F6);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 3rem;
+      color: white;
+    }
+
+    .portfolio-content {
+      padding: 25px;
+    }
+
+    .portfolio-content h3 {
+      margin-bottom: 10px;
+      color: #8B5CF6;
+    }
+
+    .portfolio-content p {
+      opacity: 0.8;
+      line-height: 1.6;
+      margin-bottom: 15px;
+    }
+
+    .project-tech {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+
+    .project-tech span {
+      background: rgba(139, 92, 246, 0.1);
+      color: #8B5CF6;
+      padding: 3px 10px;
+      border-radius: 12px;
+      font-size: 0.75rem;
+    }
+
+    /* About Section */
+    .about {
+      padding: 100px 0;
+      background: rgba(255, 255, 255, 0.02);
+    }
+
+    .about-content {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: center;
+    }
+
+    .about-text h2 {
+      font-size: 2.5rem;
+      margin-bottom: 30px;
+      background: linear-gradient(135deg, #ffffff, #8B5CF6);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .about-text p {
+      font-size: 1.1rem;
+      line-height: 1.8;
+      opacity: 0.9;
+      margin-bottom: 20px;
+    }
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 30px;
+    }
+
+    .stat-item {
+      text-align: center;
+      padding: 30px;
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 15px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .stat-number {
+      font-size: 2.5rem;
+      font-weight: 700;
+      color: #8B5CF6;
+      margin-bottom: 10px;
+    }
+
+    .stat-label {
+      opacity: 0.8;
+    }
+
+    /* Contact Section */
+    .contact {
+      padding: 30px 0;
+    }
+
+    .contact-content {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+    }
+
+    .contact-form {
+      background: rgba(255, 255, 255, 0.05);
+      padding: 40px;
+      border-radius: 20px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
+    }
+
+    .form-group {
+      margin-bottom: 25px;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 8px;
+      color: #ffffff;
+    }
+
+    .form-group input,
+    .form-group textarea,
+    .form-group select {
+      width: 100%;
+      padding: 15px;
+      background: rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 10px;
+      color: #ffffff;
+      font-size: 16px;
+      transition: all 0.3s ease;
+    }
+
+    .form-group input:focus,
+    .form-group textarea:focus,
+    .form-group select:focus {
+      outline: none;
+      border-color: #8B5CF6;
+      box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.15);
+    }
+
+    .form-group input::placeholder,
+    .form-group textarea::placeholder {
+      color: rgba(255, 255, 255, 0.5);
+    }
+
+    .submit-btn {
+      width: 100%;
+      padding: 15px;
+      background: linear-gradient(135deg, #8B5CF6, #3B82F6);
+      color: white;
+      border: none;
+      border-radius: 10px;
+      font-size: 16px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .submit-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 30px rgba(139, 92, 246, 0.4);
+    }
+
+    .contact-info h3 {
+      font-size: 2rem;
+      margin-bottom: 30px;
+      color: #ffffff;
+    }
+
+    .contact-item {
+      display: flex;
+      align-items: center;
+      margin-bottom: 25px;
+      padding: 20px;
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 15px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      transition: all 0.3s ease;
+    }
+
+    .contact-item:hover {
+      background: rgba(255, 255, 255, 0.1);
+      border-color: rgba(139, 92, 246, 0.3);
+    }
+
+    .contact-icon {
+      font-size: 1.5rem;
+      margin-right: 15px;
+      color: #8B5CF6;
+    }
+
+    /* Footer */
+    footer {
+      padding: 50px 0;
+      text-align: center;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      background: rgba(0, 0, 0, 0.3);
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      .nav-menu {
+        display: none;
+      }
+
+      .hero h1 {
+        font-size: 2.5rem;
+      }
+
+      .hero p {
+        font-size: 1.1rem;
+      }
+
+      .section-title {
+        font-size: 2rem;
+      }
+
+      .about-content,
+      .contact-content {
+        grid-template-columns: 1fr;
+        gap: 40px;
+      }
+
+      .services-grid,
+      .portfolio-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .stats {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Navigation -->
+  <nav>
+    <div class="container">
+      <div class="nav-content">
+        <div class="logo"><a href="/index.html"><img src="/imgs/logo.png" alt="Arham It Solution" width="210px"></a>
+        </div>
+        <ul class="nav-menu">
+          <li><a href="#home">Home</a></li>
+          <li><a href="#services">Services</a></li>
+          <li><a href="#portfolio">Portfolio</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section id="home" class="hero">
+    <div class="container">
+      <div class="hero-content">
+        <h1>Android App Development</h1>
+        <p>Creating innovative, user-friendly Android applications that engage users and drive business success.</p>
+        <a href="#contact" class="cta-button">Start Your App Project</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Services Section -->
+  <section id="services" class="services">
+    <div class="container">
+      <h2 class="section-title">Our Android Development Services</h2>
+      <div class="services-grid">
+        <div class="service-card">
+          <div class="service-icon">📱</div>
+          <h3>Native Android Development</h3>
+          <p>High-performance native Android apps built with Kotlin and Java for optimal user experience and device
+            integration.</p>
+          <div class="tech-list">
+            <span class="tech-tag">Kotlin</span>
+            <span class="tech-tag">Java</span>
+            <span class="tech-tag">Android SDK</span>
+            <span class="tech-tag">Material Design</span>
+          </div>
+        </div>
+        <div class="service-card">
+          <div class="service-icon">🔄</div>
+          <h3>Cross-Platform Development</h3>
+          <p>Cost-effective solutions using Flutter and React Native to target both Android and iOS platforms
+            simultaneously.</p>
+          <div class="tech-list">
+            <span class="tech-tag">Flutter</span>
+            <span class="tech-tag">React Native</span>
+            <span class="tech-tag">Dart</span>
+            <span class="tech-tag">JavaScript</span>
+          </div>
+        </div>
+        <div class="service-card">
+          <div class="service-icon">🎨</div>
+          <h3>UI/UX Design</h3>
+          <p>Beautiful, intuitive interfaces designed following Material Design principles and Android best practices.
+          </p>
+          <div class="tech-list">
+            <span class="tech-tag">Figma</span>
+            <span class="tech-tag">Adobe XD</span>
+            <span class="tech-tag">Material Design</span>
+            <span class="tech-tag">Prototyping</span>
+          </div>
+        </div>
+        <div class="service-card">
+          <div class="service-icon">☁️</div>
+          <h3>Backend Integration</h3>
+          <p>Seamless integration with cloud services, APIs, and databases for dynamic, data-driven applications.</p>
+          <div class="tech-list">
+            <span class="tech-tag">Firebase</span>
+            <span class="tech-tag">REST APIs</span>
+            <span class="tech-tag">GraphQL</span>
+            <span class="tech-tag">AWS</span>
+          </div>
+        </div>
+        <div class="service-card">
+          <div class="service-icon">🔐</div>
+          <h3>App Security</h3>
+          <p>Implementing robust security measures including data encryption, secure authentication, and privacy
+            protection.</p>
+          <div class="tech-list">
+            <span class="tech-tag">OAuth</span>
+            <span class="tech-tag">Encryption</span>
+            <span class="tech-tag">Biometrics</span>
+            <span class="tech-tag">SSL/TLS</span>
+          </div>
+        </div>
+        <div class="service-card">
+          <div class="service-icon">📊</div>
+          <h3>Analytics & Optimization</h3>
+          <p>Performance monitoring, user analytics, and app optimization to ensure smooth operation and user
+            engagement.</p>
+          <div class="tech-list">
+            <span class="tech-tag">Google Analytics</span>
+            <span class="tech-tag">Crashlytics</span>
+            <span class="tech-tag">Performance</span>
+            <span class="tech-tag">A/B Testing</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Portfolio Section -->
+  <section id="portfolio" class="portfolio">
+    <div class="container">
+      <h2 class="section-title">Our Recent Android Projects</h2>
+      <div class="portfolio-grid">
+        <div class="portfolio-item">
+          <div class="portfolio-image">🛒</div>
+          <div class="portfolio-content">
+            <h3>E-Commerce Shopping App</h3>
+            <p>Full-featured shopping application with product catalog, cart management, secure payments, and order
+              tracking.</p>
+            <div class="project-tech">
+              <span>Kotlin</span>
+              <span>Firebase</span>
+              <span>Stripe API</span>
+            </div>
+          </div>
+        </div>
+        <div class="portfolio-item">
+          <div class="portfolio-image">🏥</div>
+          <div class="portfolio-content">
+            <h3>Healthcare Management App</h3>
+            <p>Patient management system with appointment booking, medical records, doctor consultation, and
+              prescription tracking.</p>
+            <div class="project-tech">
+              <span>Java</span>
+              <span>SQLite</span>
+              <span>REST API</span>
+            </div>
+          </div>
+        </div>
+        <div class="portfolio-item">
+          <div class="portfolio-image">💰</div>
+          <div class="portfolio-content">
+            <h3>Personal Finance Tracker</h3>
+            <p>Comprehensive finance app with expense tracking, budget planning, investment monitoring, and financial
+              insights.</p>
+            <div class="project-tech">
+              <span>Kotlin</span>
+              <span>Room Database</span>
+              <span>Charts</span>
+            </div>
+          </div>
+        </div>
+        <div class="portfolio-item">
+          <div class="portfolio-image">🍕</div>
+          <div class="portfolio-content">
+            <h3>Food Delivery Platform</h3>
+            <p>Multi-restaurant food ordering app with real-time tracking, payment integration, and customer reviews
+              system.</p>
+            <div class="project-tech">
+              <span>Flutter</span>
+              <span>Google Maps</span>
+              <span>PayPal</span>
+            </div>
+          </div>
+        </div>
+        <div class="portfolio-item">
+          <div class="portfolio-image">🎓</div>
+          <div class="portfolio-content">
+            <h3>Online Learning App</h3>
+            <p>Educational platform with video streaming, course management, progress tracking, and interactive quizzes.
+            </p>
+            <div class="project-tech">
+              <span>React Native</span>
+              <span>Video Player</span>
+              <span>Firebase</span>
+            </div>
+          </div>
+        </div>
+        <div class="portfolio-item">
+          <div class="portfolio-image">🚗</div>
+          <div class="portfolio-content">
+            <h3>Ride Sharing Application</h3>
+            <p>Transportation app with GPS navigation, driver matching, fare calculation, and payment processing.</p>
+            <div class="project-tech">
+              <span>Kotlin</span>
+              <span>Google Maps</span>
+              <span>Socket.IO</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section id="about" class="about">
+    <div class="container">
+      <div class="about-content">
+        <div class="about-text">
+          <h2>Crafting Mobile Excellence</h2>
+          <p>At Arham IT Solutions, we specialize in creating cutting-edge Android applications that combine innovative
+            functionality with exceptional user experience. Our team of skilled developers stays current with the latest
+            Android technologies and design trends.</p>
+          <p>From concept to Google Play Store deployment, we handle every aspect of Android app development. Our apps
+            are built to scale, perform efficiently, and provide users with intuitive, engaging experiences that keep
+            them coming back.</p>
+          <p>Partner with us to transform your mobile app ideas into reality with professional development services that
+            drive user engagement and business growth.</p>
+        </div>
+        <div class="stats">
+          <div class="stat-item">
+            <div class="stat-number">200+</div>
+            <div class="stat-label">Apps Developed</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-number">1M+</div>
+            <div class="stat-label">App Downloads</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-number">4.8★</div>
+            <div class="stat-label">Average App Rating</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-number">6+</div>
+            <div class="stat-label">Years Experience</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact" class="contact">
+    <div class="container">
+      <div class="contact-content">
+        <div class="contact-info">
+          <h3>Let's Build Your Android App</h3>
+          <div class="contact-item">
+
+            <div class="contact-icon" aria-hidden="true">📧</div>
+            <a href="mailto:arhamitsolution@gmail.com" class="contact-link"
+              style="text-decoration: none; color: inherit;">
+              <div>
+                <strong>Email</strong> <br />
+                arhamitsolution@gmail.com
+              </div>
+            </a>
+          </div>
+          <div class="contact-item">
+            <div class="contact-icon" aria-hidden="true">📱</div>
+            <a href="tel:+919322195628" class="contact-link" style="text-decoration: none; color: inherit;">
+              <div>
+                <strong>Phone</strong><br />
+                +91-93221-95628
+              </div>
+            </a>
+
+          </div>
+          <div class="contact-item">
+            <div class="contact-icon" aria-hidden="true">📍</div>
+            <a href="https://www.google.com/maps/dir//Nagar+Sambhajingar+Highway,+above+Being+Healthy+Gym,+near+Surbhi+Hospital,+Sawli+Housing+Society,+Anand+Nagar+East,+Ahmadnagar,+Maharashtra+414003/@19.111326,74.6910263,12.33z/data=!4m8!4m7!1m0!1m5!1m1!1s0x3bdcb1382b5d7fd9:0x19bb8e0e7b2a389c!2m2!1d74.7496666!2d19.1173941?entry=ttu&g_ep=EgoyMDI1MDYxMS4wIKXMDSoASAFQAw%3D%3D"
+              class="contact-link" ; style="text-decoration: none; color:inherit;">
+              <div>
+                <strong>Location</strong><br />
+                Above Being Healthy Gym, Near Surbhi Hospital, Nagar Sambhajinagar Road, Ahilyanagar [Ahmednagar]
+                Maharashtra 414003 
+              </div>
+            </a>
+          </div>
+          <div class="contact-item">
+            <div class="contact-icon" aria-hidden="true">⏰</div>
+            <div>
+              <strong>Response Time</strong><br />
+              Within 48 hours
+            </div>
+          </div>
+          </aside>
+        </div>
+      </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <p>&copy; 2025 ArhamIT Solutions. All rights reserved. | Professional Android App Development Services.</p>
+    </div>
+  </footer>
+
+  <script>
+    // Smooth scrolling for navigation links
+    document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start',
+          });
+        }
+      });
+    });
+
+    // Form submission handler
+    document.querySelector('form').addEventListener('submit', function (e) {
+      e.preventDefault();
+
+      // Get form data
+      const formData = new FormData(this);
+      const name = formData.get('name');
+      const email = formData.get('email');
+      const service = formData.get('service');
+      const budget = formData.get('budget');
+      const message = formData.get('message');
+
+      // Simple validation
+      if (!name || !email || !message) {
+        alert('Please fill in all required fields.');
+        return;
+      }
+
+      // Simulate form submission
+      const submitBtn = this.querySelector('.submit-btn');
+      const originalText = submitBtn.textContent;
+
+      submitBtn.textContent = 'Sending...';
+      submitBtn.disabled = true;
+
+      setTimeout(() => {
+        alert(
+          `Thank you ${name}! We've received your app proposal and are excited about your ${service || 'Android app'} project. Our team will review your requirements and get back to you within 4 hours to discuss the next steps!`
+        );
+
+        // Reset form
+        this.reset();
+        submitBtn.textContent = originalText;
+        submitBtn.disabled = false;
+      }, 2000);
+    });
+
+  

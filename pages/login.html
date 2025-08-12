@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arham IT Solution - Admin Login</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body {
+            background: linear-gradient(135deg, #6B46C1, #3B82F6);
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .login-card {
+            width: 100%;
+            max-width: 400px;
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+        .logo {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .logo img {
+            height: 60px;
+        }
+        .form-control {
+            height: 50px;
+            border-radius: 8px;
+            padding: 15px;
+        }
+        .btn-login {
+            background: linear-gradient(135deg, #6B46C1, #3B82F6);
+            border: none;
+            height: 50px;
+            border-radius: 8px;
+            font-weight: 600;
+        }
+        .alert {
+            border-radius: 8px;
+        }
+    </style>
+</head>
+<body>
+    <div class="login-card">
+        <div class="logo">
+            <img src="logo.png" alt="Arham IT Solution">
+            <h3 class="mt-3">Admin Panel</h3>
+        </div>
+        
+        <div id="loginAlert" class="alert alert-danger d-none"></div>
+        
+        <form id="loginForm">
+            <div class="mb-3">
+                <label class="form-label">Email</label>
+                <input type="email" class="form-control" id="loginEmail" required>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Password</label>
+                <input type="password" class="form-control" id="loginPassword" required>
+            </div>
+            <button type="submit" class="btn btn-login w-100">
+                <i class="fas fa-sign-in-alt me-2"></i> Login
+            </button>
+        </form>
+    </div>
+
+    <script type="module">
+        import { auth, signInWithEmailAndPassword } from './firebase-config.js';
+        
+        document.getElementById('loginForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            const email = document.getElementById('loginEmail').value;
+            const password = document.getElementById('loginPassword').value;
+            const alert = document.getElementById('loginAlert');
+            
+            try {
+                await signInWithEmailAndPassword(auth, email, password);
+                window.location.href = 'admin.html';
+            } catch (error) {
+                alert.textContent = error.message;
+                alert.classList.remove('d-none');
+                setTimeout(() => {
+                    alert.classList.add('d-none');
+                }, 5000);
+            }
+        });
+    </script>
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
