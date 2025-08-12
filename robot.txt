@@ -1,4 +1,5 @@
 User-agent: *
-Disallow:
 
-Sitemap: https://www.arhamitsolution.com/sitemap.xml
+Allow: /
+
+Sitemap: https://arhamitsolution.in/sitemap.xml
